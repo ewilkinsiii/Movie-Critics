@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  genre_id: MyString
+  integer: MyString
+  movie_id: MyString
+  integer: MyString
+  user_id: MyString
+  integer: MyString
+
+two:
+  genre_id: MyString
+  integer: MyString
+  movie_id: MyString
+  integer: MyString
+  user_id: MyString
+  integer: MyString

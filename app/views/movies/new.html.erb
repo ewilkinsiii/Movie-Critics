@@ -1,0 +1,66 @@
+<h1> Enter in the new Movie. </h1>
+<br>
+<% if @movie.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+ 
+    <ul>
+    <% @movie.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_tag '/moviess' do %>
+<ul>
+<li><h4><%= label_tag :ID %>
+<%= text_field_tag :id,@movie.id %></li>
+<br>
+<li><h4><%= label_tag :Title %>
+<%= text_field_tag :title, @product.title %></li>
+<br>
+<li><h4><%= label_tag :Description %>
+<%= text_field_tag :description, @movie.description %></li>
+<br>
+<li><h4><%= label_tag :Directors_first_name %>
+<%= text_field_tag :director_first_name, @movie.director_first_name %></li>
+<br>
+<li><h4><%= label_tag :Directors_last_name %>
+<%= text_field_tag :director_last_name, @movie.director_last_name %></li>
+<br>
+<li><h4><%= label_tag :IMDB_ID %>
+<%= text_field_tag :IMDB_ID, @movie.imdb_id %></li>
+<br>
+<li><h4><%= label_tag :year %>
+<%= text_field_tag :year, @movie.year %></li>
+<br>
+<li><h4><%= label_tag :Release_date %>
+<%= text_field_tag :Release_date, @movie.release_date %></li>
+<br>
+<li><h4><%= label_tag :MPAA_Rating %>
+<%= text_field_tag :MPAA_Rating, @movie.mpaa_rating %></li>
+<br>
+<li><h4><%= label_tag :Run_time %>
+<%= text_field_tag :Run_Time, @movie.run_time %></li>
+<br>
+<li><h4><%= label_tag :Thumbnail %>
+<%= text_field_tag :Thumbnail, @movie.thumbnail %></li>
+<br>
+<li><h4><%= label_tag :Poster %>
+<%= text_field_tag :poster, @movie.poster %></li>
+<br>
+<h4> Cast Members </h4>
+<li><h4><%= label_tag :First_name %>
+<%= text_field_tag :first_name, @cast.first_name %></li>
+<br>
+<li><h4><%= label_tag :Last_name %>
+<%= text_field_tag :last_name, @cast.last_name %></li>
+<br>
+<li><h4><%= label_tag :Image %>
+<%= text_field_tag :image, @cast.image %></li>
+<br>
+<li><h4><%= label_tag :Trailer %>
+<%= text_field_tag :Trailer, @trailer.embed %></li>
+<br>
+<%= submit_tag "Submit" %></ul>
+<% end %>

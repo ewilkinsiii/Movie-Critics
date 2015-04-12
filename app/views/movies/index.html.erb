@@ -1,0 +1,154 @@
+<br>
+<br>
+<br>
+<br>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/global.css" />
+  <link type="text/css" rel="stylesheet" href="assets/css/color-button.css" />
+  <!-- js Boots_from -->
+  <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+  <!-- end Boots_from -->
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
+
+
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="box-wrapper span12">
+        <div class="widget">
+          <div class="wrapper-search">
+            <form class="form-inline form-search border-rd4">
+              <input placeholder="Type somethings to search .." type="text" class="box-text">
+              <a href="#"class="btn-search"></a>
+            </form>
+          </div>
+        </div>
+      </div><!-- end box-wrapper -->
+    </div>
+    <div class="row">
+      <div class="box-wrapper  span12">
+        
+        <div class="row">
+          <div class="title span12">
+            <h3 class="pull-left">Movies in theaters</h3>
+            <div class="sort pull-right dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Most Viewed
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-tag"></i>By Name</a></li>
+                <li><a href="#"><i class="icon-list"></i>List</a></li>
+                <li><a href="#"><i class="icon-eye-open"></i>View</a></li>
+              </ul>
+            </div>
+          </div><!-- end title -->
+        </div>
+        <ul class="thumbnails thumbnails-horizontal">
+          <%@movies.each do |movie| %>
+          <li class="span3">
+            <div class="thumbnail border-radius-top">
+              <div class="bg-thumbnail-img">
+                <a class="overlay" href="/movies/<%= movie["id"] %>">
+                </a>
+                <img class="border-radius-top" src="<%= movie['posters']['profile']%>">
+              </div>
+              <h5><a href="/movies/<%= movie["id"] %>"><%=movie['title'].truncate(20)%></a></h5>
+            </div>
+            <div class="box border-radius-bottom">
+              <p>
+                <span class="title_torrent pull-left pull-left">Rating</span>
+                <span class="number-view pull-right"><i class="icon-white icon-eye-open"></i><%= movie['release_dates']['theater']%></span>
+              </p>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+        <div class="row">
+          <div class="span12">
+            <div class="navigation pagination pull-right">
+              <ul>
+                <li><a href="#">←</a></li>
+                <li><a class="active" href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">→</a></li>
+              </ul>
+            </div>
+          </div><!-- end navigation -->
+        </div>
+      </div><!-- end  -->
+      <!-- **************** start All Flie  ****************** -->
+      <div class="box-wrapper span10">
+        <div class="row">
+          <div class="title span10">
+            <h3 class="pull-left">Comming Soon Movies</h3>
+            <div class="sort pull-right dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Most Viewed
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-tag"></i>By Name</a></li>
+                <li><a href="#"><i class="icon-list"></i>List</a></li>
+                <li><a href="#"><i class="icon-eye-open"></i>View</a></li>
+              </ul>
+            </div>
+          </div><!-- end title -->
+        </div>
+        <ul class="thumbnails thumbnails-vertical">
+          <%@movies.each do |movie| %>
+
+          <li class="span5">
+            <div class="thumbnail border-radius-top">
+              <div class="bg-thumbnail-img">
+                <img class="border-radius-top" src="<%= movie['posters']['profile']%>">
+              </div>
+              <div class="thumbnail-content-left">
+                <h5><a href="/movies/<%= movie['id']%>"><%=movie["title"].truncate(30)%></a></h5>
+                <p><%= movie["synopsis"].truncate(100)%><a href="/movies/<%= movie["id"] %>">Read More</a>
+                </p>
+              </div>
+            </div>
+          <%end%>
+        </ul>
+        <div class="row">
+          <div class="span10">
+            <div class="navigation pagination pull-right">
+              <ul>
+                <li><a href="#">←</a></li>
+                <li><a class="active" href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">→</a></li>
+              </ul>
+            </div>
+          </div><!-- end navigation -->
+        </div>
+      </div><!-- end  -->
+      <div class="row">
+        <div class="list-menu box-wrapper span2">
+          <div class="row">
+            <div class="title bg-title span2">
+              <h3>List menu</h3>
+            </div>
+          </div>
+          <ul class="nav nav-list">
+            <li><a href="index.html"><i class="icon-home"></i>Home</a></li>
+            <li class="active"><a href="#"><i class="icon-book"></i>Detail</a></li>
+            <li><a href="#"><i class="icon-list"></i>List Menu</a></li>
+            <li><a href="#"><i class="icon-list-alt"></i>List Alt Menu</a></li>
+          </ul>
+        </div>
+      </div><!-- row -->
+      <!-- **************** end All Flie  ****************** -->
+    </div><!-- row -->
+        
+  </div><!-- end container -->
+</div><!-- end main -->
+</body>

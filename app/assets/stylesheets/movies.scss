@@ -1,0 +1,34 @@
+// Place all the styles related to the movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+background-image: url("carbon_fibre_big.png")
+}
+
+h1,h2,h3,h4,h5,h6{
+  color: white;
+}
+#caption{
+  float: center;
+}
+h6{
+  float: center;
+}
+element {
+}
+.row {
+  margin-left: -20px;
+  margin-left-value: -20px;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+}
+body {
+    color: #DDD;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #333;
+}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

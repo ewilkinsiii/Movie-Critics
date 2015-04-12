@@ -1,0 +1,52 @@
+<h1>Edit the Movie</h1>
+<br>
+<%= form_tag("/movies/#{@movie.id}", :method => :patch) do %>
+<ul>
+<li>
+  <h4><%= label_tag :Title %>
+<%= text_field_tag :title, @movie.title %></h4></li>
+<li><h4><%= label_tag :Description %>
+<%= text_field_tag :description, @movie.description %></li>
+<br>
+<li><h4><%= label_tag :Directors_first_name %>
+<%= text_field_tag :directors_first_name, @movie.director_first_name %></li>
+<br>
+<li><h4><%= label_tag :Directors_last_name %>
+<%= text_field_tag :directors_last_name, @movie.director_last_name %></li>
+<br>
+<li><h4><%= label_tag :IMDB_ID %>
+<%= text_field_tag :IMDB_ID, @movie.imdb %></li>
+<br>
+<li><h4><%= label_tag :year %>
+<%= text_field_tag :year, @movie.product_options.id %></li>
+<br>
+<li><h4><%= label_tag :Release_date %>
+<%= text_field_tag :Release_date, @movie.release_date %></li>
+<br>
+<li><h4><%= label_tag :MPAA_Rating %>
+<%= text_field_tag :MPAA_Rating, @movie.mpaa_rating %></li>
+<br>
+<li><h4><%= label_tag :Run_time %>
+<%= text_field_tag :Run_Time, @movie.run_time %></li>
+<br>
+<li><h4><%= label_tag :Thumbnail %>
+<%= text_field_tag :Thumbnail, @movie.Thumbnail %></li>
+<br>
+<li><h4><%= label_tag :Poster %>
+<%= text_field_tag :poster, @movie.poster %></li>
+<br>
+<li><h4><%= label_tag :cast_member_first_name %>
+<%= text_field_tag :Cast_Member, @cast.cast_member_first_name %></li>
+<br>
+<li><h4><%= label_tag :Cast_Member_last_name %>
+<%= text_field_tag :Cast_Member, @cast.cast_member_last_name %></li>
+<br>
+<li><h4><%= label_tag :Cast_Member_image %>
+<%= text_field_tag :Cast_Member_image, @cast.cast_member_image %></li>
+<br>
+<li><h4><%= label_tag :Trailer %>
+<%= text_field_tag :Trailer, @trailer.embed %></li>
+<br>
+<%= hidden_field_tag :movie_id, @movie.id%>
+</h4><%= submit_tag "Update Product" %></h4></ul>
+<% end %> 
