@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   #post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
+  #get 'users/id' => 'users#show'
   root to: 'movies#index'
   get '/movies' => 'movies#index', as: :movies
   post '/movies' => 'movies#create'

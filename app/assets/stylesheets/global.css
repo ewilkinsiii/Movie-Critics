@@ -1,6 +1,6 @@
 body {
 	color:#ddd;
-	background:#33363B;
+	background: black;
 }
 
 /************ Custom **************/
@@ -197,7 +197,7 @@ border-color: #18191c;
 .table thead tr th {
 	color:#ddd;
 	padding:10px;
-    background: #1b1e23;
+    background: black;
     border: none;
 }
 .table tr td {
@@ -305,7 +305,7 @@ border-bottom-color: #999;
 }
 
 .btn-search {
-	background:url("../img/icons/btn-search.png") left top no-repeat;
+	background: url("icons/btn-search.png") left top no-repeat;
 	height:38px;
 	width:92px;
 	border:none;

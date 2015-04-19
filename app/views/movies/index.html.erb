@@ -37,14 +37,14 @@
           <div class="title span12">
             <h3 class="pull-left">Movies in theaters</h3>
             <div class="sort pull-right dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="/movies">
                 Most Viewed
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-tag"></i>By Name</a></li>
-                <li><a href="#"><i class="icon-list"></i>List</a></li>
-                <li><a href="#"><i class="icon-eye-open"></i>View</a></li>
+                <li><a href="/movies?sort=title&direction=desc"><i class="icon-tag"></i>By Name</a></li>
+                <li><a href="/movies"><i class="icon-list"></i>List</a></li>
+                <li><a href="/movies"><i class="icon-eye-open"></i>View</a></li>
               </ul>
             </div>
           </div><!-- end title -->
@@ -54,16 +54,16 @@
           <li class="span3">
             <div class="thumbnail border-radius-top">
               <div class="bg-thumbnail-img">
-                <a class="overlay" href="/movies/<%= movie["id"] %>">
+                <a class="overlay" href="/movies/<%= movie.id %>">
                 </a>
-                <img class="border-radius-top" src="<%= movie['posters']['profile']%>">
+                <img class="border-radius-top" src="<%= movie.poster%>">
               </div>
-              <h5><a href="/movies/<%= movie["id"] %>"><%=movie['title'].truncate(20)%></a></h5>
+              <h5><a href="/movies/<%= movie.id %>"><%=movie.title.truncate(20)%></a></h5>
             </div>
             <div class="box border-radius-bottom">
               <p>
                 <span class="title_torrent pull-left pull-left">Rating</span>
-                <span class="number-view pull-right"><i class="icon-white icon-eye-open"></i><%= movie['release_dates']['theater']%></span>
+                <span class="number-view pull-right"><i class="icon-white icon-eye-open"></i><%= movie.release_date%></span>
               </p>
             </div>
           </li>
@@ -107,11 +107,11 @@
           <li class="span5">
             <div class="thumbnail border-radius-top">
               <div class="bg-thumbnail-img">
-                <img class="border-radius-top" src="<%= movie['posters']['profile']%>">
+                <img class="border-radius-top" src="<%= movie.poster%>" width="100" height "100">
               </div>
               <div class="thumbnail-content-left">
-                <h5><a href="/movies/<%= movie['id']%>"><%=movie["title"].truncate(30)%></a></h5>
-                <p><%= movie["synopsis"].truncate(100)%><a href="/movies/<%= movie["id"] %>">Read More</a>
+                <h5><a href="/movies/<%= movie.id%>"><%=movie.title.truncate(30)%></a></h5>
+                <p><%= movie.description.truncate(100)%><a href="/movies/<%= movie.id %>">Read More</a>
                 </p>
               </div>
             </div>

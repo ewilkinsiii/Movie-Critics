@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412202814) do
+ActiveRecord::Schema.define(version: 20150414020952) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id",      limit: 4
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 20150412202814) do
     t.string   "category",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "genres_movies", id: false, force: :cascade do |t|
+    t.integer "movie_id", limit: 4, null: false
+    t.integer "genre_id", limit: 4, null: false
   end
 
   create_table "movie_genres", force: :cascade do |t|
@@ -137,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150412202814) do
     t.integer  "movie_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title",      limit: 255
   end
 
   create_table "users", force: :cascade do |t|

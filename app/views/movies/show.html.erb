@@ -47,7 +47,7 @@
             <div class="widget">
               <div class="widget-content-pd">
 
-               <img src="<%= @movie.original %>" width="100">
+               <img src="<%= @movie.poster %>" width="100">
                <div class="new_details">
                   <div ng-controller="ratingCtrl" ng-init="setup(<%= @movie.id %>, <%= current_user.id %>)">
                     <h4>Movie Rating</h4>
@@ -58,7 +58,7 @@
                   </div>
                  <h4><%= @movie.year%></h4>
                  <h4>Rated: <%= @movie.mpaa_rating%></h4>
-                 <h4>Runtime: <%= @movie.runtime%></h4>
+                 <h4>Runtime: <%= @movie.run_time%></h4>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@
 
              <div class="widget">
                <div class="widget-content-pd">
-                  <p><h3><%= @movie.synopsis%></h3></p>
+                  <p><h3><%= @movie.description%></h3></p>
                 </div>
               </div>
               <!--Add Comments-->
@@ -85,6 +85,7 @@
                 </div>
                   <div ng-controller="commentCtrl">
                     <form>
+                      {{1 + 1}}
                      <h3>Post your Comment</h3>
                      <br>
                       <textarea ng-model="txtcomment" placeholder="Your Comment" Style='width:550px'></textarea>
@@ -114,15 +115,15 @@
             </div>
             <div class="widget">
               <div class="widget-content-pd">
-                <p class="ct-img"><a href="#"><img src="assets/img/img-blog4.jpg"></a></p>
+                <p class="ct-img"><a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/57/6d/69/576d691db871bc4006d8afb0f3e379fd.jpg"></a></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="ct-img"><a href="#"><img src="assets/img/img-blog2.jpg"></a></p>
+                <p class="ct-img"><a href="#"><img src="http://fc00.deviantart.net/fs71/f/2013/340/d/1/justice_league_movie_poster_by_sumitsjc-d6l8v6n.jpg"></a></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="ct-img"><a href="#"><img src="assets/img/img-blog3.jpg"></a></p>
+                <p class="ct-img"><a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/f2/aa/69/f2aa69cb05e2e9bc80118861a4329384.jpg"></a></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -131,7 +132,7 @@
                   <ul class="box-message-content">
                     <li>
                       <a class="avatar-comment span1" href="#">
-                        <img src="assets/img/cm-1.jpg">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQnEuYDSwN01cbSHKjcJm7nzXG5nzRbZAbR8H4M37NQwanBPG26">
                       </a>
                       <div class="message-wrapper span6">
                         <div class="text-message">
@@ -150,12 +151,12 @@
 
                     <li>
                       <a class="avatar-comment span1" href="#">
-                        <img src="assets/img/cm-3.jpg">
+                        <img src="http://www.socialagent.me/wp-content/uploads/2014/07/avatarDefault.png">
                       </a>
                       <div class="message-wrapper span6">
                         <div class="text-message">
                           <a href="#">
-                            jane doe
+                            Peter Parker
                           </a>
                           <span class="comment-data">
                             Apr 16th at 4:49pm
@@ -169,12 +170,12 @@
 
                     <li>
                       <a class="avatar-comment span1" href="#">
-                        <img src="assets/img/cm-2.jpg">
+                        <img src="http://www.movienewz.com/img/films/gi_joe_3_movie_poster_1.jpg">
                       </a>
                       <div class="message-wrapper span6">
                         <div class="text-message">
                           <a href="#">
-                            jane doe
+                            Cobra
                           </a>
                           <span class="comment-data">
                             Apr 16th at 4:49pm
@@ -190,7 +191,11 @@
                   <div class="box-add-comment">
                     <div>
                       <div class="avatar-comment span1" href="#">
-                        <img src="assets/img/avatar-cm.png">
+                        <% if current_user%>
+                         <img src="<%=current_user.image%>">
+                        <%else%>
+                         <img src="http://www.eurogeosurveys.org/wp-content/uploads/2014/02/default_profile_pic.jpg">
+                        <%end%>
                       </div>
 
                       <div class="message-wrapper span6">
@@ -236,59 +241,60 @@
               </div>
             </div>
             <ul class="thumbnails thumbnails-horizontal">
-              <% @movie.abridged_cast.each do |cast_member| %>
-                <% if cast_member["characters"] %>
+              <% @cast.each do |cast| %>
+                <!--<% if cast.first_name %>-->
                   <li class="span3">
                     <div class="thumbnail border-radius-top">
                       <div class="bg-thumbnail-img">
-                        <a class="overlay" href="detail.html">
-                          <img src="assets/img/icons/play.png">
-                        </a>
-                        <img class="border-radius-top" src="assets/img/project/pj1.jpg">
+                        <img class="border-radius-top" src="<%=cast.image.html_safe%>">
                       </div>
-                      <h5><a href="detail.html"><%= "#{cast_member["name"]}"%></a></h5>
+                      <h5><a href="detail.html"><%= "#{cast.first_name} #{cast.last_name}"%></a></h5>
                     </div>
                     <div class="box border-radius-bottom">
                       <p>
-                       <span class="title_torrent pull-left"> as <%="#{cast_member["characters"][0]}" %></span>
+                       <span class="title_torrent pull-left"> as <%="#{cast.characters_name}" %></span>
                        <span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
                       </p>
                     </div>
                       </p>
                   </li>
-                <%end%>
+                <!--<%end%>-->
               <% end %> 
             </ul>
             </div><!-- end thumbnails-style1 -->
           </div><!-- row -->
    
       <!-- Recommended Row-->
+
       <div class="row">
         <div class="box-wrapper span3">
           <div class="row">
             <div class="title bg-title span3">
-              <h3>Recommended</h3>
+              <h3>Recommended Critic</h3>
             </div>
           </div>
           <ul class="thumbnails thumbnails-horizontal">
+            <% @critics.each do |critic|%>
+              <% if critic != current_user%>
             <li class="span3">
               <div class="thumbnail border-radius-top">
                 <div class="bg-thumbnail-img">
                   <a class="overlay" href="detail.html">
-                    <img src="assets/img/icons/play.png">
                   </a>
-                  <img class="border-radius-top" src="assets/img/project/pj1.jpg">
+                  <img class="border-radius-top" src="<%=critic.image%>">
                 </div>
-                <h5><a href="detail.html">Lorem ipsum dolor sit  </a></h5>
+                <h5><a href="detail.html"><%= critic.first_name%></a></h5>
               </div>
               <div class="box border-radius-bottom">
                 <p>
-                  <span class="title_torrent pull-left">Movie</span>
+                  <span class="title_torrent pull-left"><%=critic.last_name%></span>
                   <span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
                 </p>
               </div>
             </li>
             <span>
+              <%end%>
+            <%end%>
           </ul>
         </div><!-- end thumbnails-style1 -->
       </div><!-- row -->

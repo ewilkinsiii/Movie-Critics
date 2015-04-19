@@ -8,46 +8,6 @@
   <!-- end Boots_from -->
 </head>
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
-
 <div class="main">
   <div class="container">
     <div class="row">
@@ -55,7 +15,10 @@
         <div class="row">
           <div class="span3 user_info">
             <ul>
-              <li><a class="avatar" href="#"><img src="assets/img/avatar.png"></a></li>
+              <li><a class="avatar">
+                  <% if current_user%>
+                   <img src="<%= current_user.image%>"></a></li>
+                  <%end%>
               <li><a href="account.html"><i class="icon-user icon-white"></i>Profile</a></li>
               <li><a class="btn btn-danger" href="#"><i class="icon-envelope icon-white"></i>Send Mail</a></li>
             </ul>
@@ -77,20 +40,22 @@
             <fieldset>
               <div class="field">
                 <%= f.label :first_name %><br />
-                <%= f.email_field :first_name, autofocus: true %>
+                <%= f.text_field :first_name, autofocus: true %>
               </div>
 
               <div class="field">
                 <%= f.label :last_name %><br />
-                <%= f.email_field :last_name, autofocus: true %>
+                <%= f.text_field :last_name, autofocus: true %>
               </div>
 
               <div class="control-group">
-                      <label class="control-label" for="fileInput">Change avatar</label>
-                      <div class="controls">
-                        <input class="file" id="fileInput" type="file">
-                      </div>
-                    </div>
+                <label class="control-label" for="fileInput">Change avatar</label>
+                <div class="controls">
+                  <input class="file" id="fileInput" type="file">
+                  <%= label_tag :image %>
+                  <%= text_field_tag :image, current_user.image %>
+                </div>
+              </div>
 
               <div class="control-group">
                 <div class="field">
@@ -118,14 +83,14 @@
                   <%= f.password_field :current_password, autocomplete: "off" %>
                 </div>
                 <!--end-->
-
-                <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+                
+                <div class="actions">
+                  <%= f.submit "Update" %>
+                </div>
 
                   <div class="form-actions border-rd4">
                     <div class="actions">
-                     <%= f.submit "Update" %>
-
-                     <%= link_to "Back", :back %>
+                      <p><%= link_to "Back", :back %><br>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> </p>
                   </div>
               </fieldset>
           </form>

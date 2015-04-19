@@ -2,27 +2,47 @@ class MoviesController < ApplicationController
  before_action :authenticate_admin!, :only => [:edit, :destroy]
 
   def index
-    @movies=Unirest.get("#{ENV['API_BASE_URL']}").body["movies"]
-    p "JSON STUFF:"
-    
-    
+    @movies = Movie.all
+
     if params[:search]
-      @movies =Unirest.get("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=title&page_limit=10&page=1&apikey=evhe76cqf8at2mzkhby5whdv").body["movie"]
-      @movies= @movies.where('title LIKE ?', "%" + params[:search] + "%")
+      @movies= Movie.where('title LIKE ?', "%" + params[:search] + "%")
+    elsif params[:category]
+      # @movies = Movie.where("category like ?", "%#{params[:category]}%")
+      genre= Genre.find_by(:category => params[:category])
+      @movies = genre.movies
     end
+
+    if params[:sort] == "by_name" 
+      @movies = @movies.title(params[:sort] => params[:direction])
+    end
+    # @movies=Unirest.get("#{ENV['API_BASE_URL']}").body["movies"]
+    # p "JSON STUFF:"
+    
+    
+    # if params[:search]
+    #   @movies =Unirest.get("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=title&page_limit=10&page=1&apikey=evhe76cqf8at2mzkhby5whdv").body["movie"]
+    #   @movies= @movies.where('title LIKE ?', "%" + params[:search] + "%")
+    # end
   end
 
   def show
 
+    @movie = Movie.find(params[:id])
+
+    @cast = Cast.where(movie_id: params[:id]).all
+
     @movie_mbd = Tmdb::Movie.detail(params[:id])
     @images = Tmdb::Movie.images(params[:id])
-    @cast = Tmdb::Movie.casts(params[:id])
+    score = Rating.find_by(:movie_id=>params[:id], :user_id => current_user.id).score
+    p params[:id]
+    @critics = User.joins(:ratings).where(:ratings => {:score=> score, :movie_id => params[:id]})
+    #@cast = Tmdb::Movie.casts(params[:id])
     @trailers = Tmdb::Movie.trailers(params[:id])
     @similar_movies = Tmdb::Movie.similar_movies(params[:id])
-
-    @movie = Movie.find(params[:id])
-    # @movie = Movie.new(movie_data)
-    p "Movie.new#{@movie}"
+    #@critic = User.where(:movie_id params[:id], )
+    # @movie = Movie.find(params[:id])
+    # # @movie = Movie.new(movie_data)
+    # p "Movie.new#{@movie}"
   end
 
   def create
@@ -65,7 +85,6 @@ class MoviesController < ApplicationController
      flash[:warning] = "You aren't authorized to take that action!"
      redirect_to "/"
     end
-    
   end
 
   def update
